@@ -1,0 +1,33 @@
+﻿<Window x:Class="IrishRailTimer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IrishRailTimer"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Title="IRT" Height="450" Width="800">
+    <Grid>
+        <StackPanel Background="#32a441">
+            <StackPanel Orientation="Horizontal" Background="White">
+                <Image HorizontalAlignment="Left" Width="150" Height="50" Source="/Images/IrishRail.png"></Image>
+                <Label Content="IRISH REAL TIME" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                <Label Content="{Binding ErrorMessage}" Foreground="IndianRed" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+            </StackPanel>
+            <Label Height="10"></Label>
+            <StackPanel Orientation="Horizontal" Background="#51b137">
+                <Label Content="Choose Stop:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></Label>
+                <ComboBox Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="30" SelectedItem="{Binding SelectedStationNameCode, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding StationNameCodes, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                
+                <Label Width="10"></Label>
+                <Button Height="30" Width="200" Content="Search Station" Command="{Binding Search, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"></Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Background="#51b137">
+                <Label Content="Train Details: "></Label>
+                <Label Content="{Binding LastUpdated}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"></Label>
+            </StackPanel>
+            <DataGrid ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding TrainsDetails, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"></DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>
